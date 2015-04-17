@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app='download'>
+<head>
+    <title>L1000 CD Signatures</title>
+	<meta charset='UTF-8'>
+	i
+    <link rel="shortcut icon" href="images/sigine.ico" type="image/x-icon" />
+	<meta content='width=device-width, initial-scale=1' name='viewport'/>
+	<link rel='stylesheet' type='text/css' href='css/main.css'/>
+	<link rel='stylesheet' type='text/css' href='css/open-sans.css'/>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js'></script>
+    <script>
+    var myApp = angular.module('download', []);
+
+myApp.controller('mainCtrl', ['$scope', function($scope) {
+            $scope.range = _.range(101);
+}]);
+    </script>
+</head>
+<body ng-controller="mainCtrl">
+    <div id='sidebar'>
+        <ul>
+            <li><a href='#summary'>Installation</a></li>
+            <li><a href='#genesMeta'>Genes' Meta-data</a></li>
+            <li><a href='#sig'>Signatures</a></li>
+           <!--  <ul id='sideBarSub'>
+                <li><a href='#search'>Search</a></li>
+                <li><a href='#example'>Example</a></li>
+                <li><a href='#EBOV'>EBOV</a></li>
+                <li><a href='#aggravate'>Mimic/Reverse</a></li>
+                <li><a href='#diseases'>Diseases</a></li>
+                <li><a href='#table'>Table</a></li>
+                <li><a href='#share'>Share</a></li>
+            </ul> -->
+            <!-- <li><a href='#api'>API</a></li> -->
+            <li><a href='#contact'>Contact</a></li>
+        </ul>
+    </div>
+    <div id='content'>
+        <h2 id='title'>
+            <img id='logo' src='images/CD.png'/>
+            <span>L1000 CD Signatures</span>
+        </h2>
+        <h4 id='subtitle'>Gene expression signatures calculated from the LINCS L1000 dataset using the <a class="cd" href="http://www.maayanlab.net/CD/">characteristic direction</a> method</h4>
+        <section id='summary'>
+            <h3>Installation</h3>
+            <p>1. Install <a href="http://www.mongodb.org/">MongoDB</a>.</p>
+            <p>2. Download all the LINCS_L1000_CD.x files and place them into the MongoDB database folder.</p>
+            <p>3. Start mongod.</p>
+            <p>4. Open a mongo shell and switch to LINCS_L1000_CD db. The cpc2014 collection in the db stores all the processed LINCS L1000 data. </p>
+            <p>5. Optionally it is suggested to download and install <a href="http://robomongo.org/">Robomongo</a> which provides a nice GUI to browse the data.</p>
+            <p>6. Refer to the MongoDB documentation for query specifications and drivers for different languages.</p>
+       </section>
+        <section id='genesMeta'>
+            <h3>Genes' Meta-data</h3>
+            <p><a href="rid.json">rid.json</a> is an array of probe IDs mapping to the order of the genes in the processed data.</p>
+            <p><a href="apiRowMeta.json">apiRowMeta.json</a> is the meta-data information for each probe ID downloaded from the Broad API and can be used to convert probe IDs to gene symbols and determine if a probe ID is a landmark gene.</p>
+
+       </section>
+       <section id='sig'>
+            <h3>Signatures</h3>
+            LINCS_L1000_CD.x MongoDB files are listed here:
+            <ul>
+                <li><a href="LINCS_L1000_CD.ns">LINCS_L1000_CD.ns</a></li>
+                <li ng-repeat="i in range"><a href="LINCS_L1000_CD.{{i}}" >LINCS_L1000_CD.{{i}}</a></li>
+            </ul>
+       </section>
+       <section id="contact">
+            <h3>Contact</h3>
+            <p>Please contact Avi Ma’ayan and Qiaonan Duan for comments, suggestions, and support: <a href="mailto:avi.maayan@mssm.edu">avi.maayan@mssm.edu</a>, <a href="mailto:qiaonan.duan@mssm.edu">qiaonan.duan@mssm.edu</a>.</p>
+        </section>
+</body>
+</html>

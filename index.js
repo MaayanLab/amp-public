@@ -8,7 +8,7 @@ var urlencodedParser = bodyParser.urlencoded({limit:'5mb',extended:false});
 app.use('/',express.static(__dirname + '/public'));
 
 
-var port = 7070;
+var port = 6061;
 app.listen(port,function(){
 	console.log('server@'+port);
 });
