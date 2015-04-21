@@ -1,0 +1,161 @@
+/**************
+ * Base fonts *
+ **************/
+ body{
+    text-align:center;
+ }
+
+
+.top-bar{
+  position: fixed;
+  width: 100%;
+  top: 0%;
+  z-index: 999;
+  padding-bottom: 18px;
+  background-color: rgba(255,255,255,0.9);
+  border-bottom-style: dotted;
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+}
+
+ .title{
+  font-size: 39px;
+/* font-weight: bold; */
+text-align: left;
+margin-left: 8%;
+padding-bottom: 9px;
+font-family: openSansLight;
+ }
+
+ .sub-title{
+  font-size:0.3em;
+  font-style: italic;
+  vertical-align: 85%;
+  font-family: openSansLight;
+ }
+
+/*button style*/
+ a.btn-modern{
+  font-family: Helvetica;
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 0;
+  border-width: 1.5px;
+  border-color: black;
+
+  color:black;
+  cursor: pointer;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-decoration: none;
+  font-size:0.9em;
+ }
+
+
+ a.btn-selected{
+  text-decoration: none !important;
+  color:white !important;
+  background-color: rgba(0,0,0,0.7);
+  border-color:white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+ }
+
+
+ a:hover, a:focus{
+  text-decoration: none !important;
+  color:white !important;
+  background-color: rgba(0,0,0,0.7);
+  border-color:white;
+ }
+
+ .btn-right{
+  margin-left: 2%;
+ }
+
+.container{
+  text-align:left;
+  top:100px;
+}
+
+.wrapper{
+  padding-left:7%;
+}
+
+.groupHeader {
+  border-style: solid;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 10px;
+  padding-bottom: 5px;
+
+/*  font-family: 'Open Sans';
+  font-weight: bold;
+  font-size: 2.12706rem;*/
+
+  font-size: 18px;
+  color: rgba(50,50,50,0.8);
+  font-family: openSansSemiBold;
+}
+
+.group{
+  width:20%;
+  margin:auto;
+  /*display:inline-block;*/
+  /*vertical-align:top*/
+}
+
+
+.genericCountViewLabel{
+  font-size: 17px;
+  fill: rgba(0,0,0,0.75);
+  font-family: openSansreg;
+}
+
+.genericCountViewCount{
+  font-family: openSansLight;
+  font-size: 37px;
+}
+
+@font-face{
+  font-family: 'openSansReg';
+  src:url('fonts/OpenSans-Regular.ttf');
+}
+
+@font-face{
+  font-family: 'openSansSemiBold';
+  src:url('fonts/OpenSans-Semibold.ttf');
+}
+
+@font-face{
+  font-family: 'openSansLight';
+  src:url('fonts/OpenSans-Light.ttf');
+}
+
+/*Start ng-animation on ng-repeat group class*/
+.wrapper.ng-enter, .wrapper.ng-move {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.wrapper.ng-enter.ng-enter-active,
+.wrapper.ng-move.ng-move-active {
+  opacity:1;
+}
+
+.wrapper.ng-leave {
+  -webkit-transition:0.2s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.2s linear all;
+  opacity:1;
+}
+
+.wrapper.ng-leave.ng-leave-active{
+  opacity:0;
+}

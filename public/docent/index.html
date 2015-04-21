@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="docent">
+  <head>
+    <title> </title>
+    <link rel="shortcut icon" href="css/images/?.ico" type="image/x-icon">
+    <!--style-->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- libraries -->
+    <script src="libraries/jquery/dist/jquery.min.js"></script>
+    <script src="libraries/string/lib/string.min.js"></script>
+    <script src="libraries/underscore/underscore-min.js"></script>
+    <script src="libraries/angular/angular.js"></script>
+    <script src="libraries/angular-route/angular-route.min.js"></script>
+    <script src="libraries/angular-animate/angular-animate.min.js"></script>
+    <script src="libraries/packery/dist/packery.pkgd.min.js"></script>
+    <!-- barista dependancy -->
+    <script src="Barista/barista.main.min.js"></script>
+    <!-- scripts-->
+    <script src="scripts/services.js"></script>
+    <script src="scripts/mapProvider.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js">  </script>
+  </head>
+  <body ng-controller="main">
+    <div class="top-bar">
+      <div class="title">Docent <span class="sub-title"> An overview guide into LINCS data</span></div>
+      <div><a href="#/centerView" ng-class="view=='center'?'btn-selected':''" ng-click="setView('center')" class="btn-modern">Center View</a><a href="#/assayView" ng-class="view=='assay'?'btn-selected':''" ng-click="setView('assay')" class="btn-modern btn-right">Assay View</a></div>
+    </div>
+    <div ng-view class="wrapper"></div>
+  </body>
+</html>
