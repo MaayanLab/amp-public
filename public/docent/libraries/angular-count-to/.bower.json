@@ -1,0 +1,13 @@
+{
+  "name": "angular-count-to",
+  "homepage": "https://github.com/frlender/angular-count-to",
+  "_release": "d4bb8b7156",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d4bb8b7156386a07981ff41b6bb17cfbf77ad886"
+  },
+  "_source": "https://github.com/frlender/angular-count-to.git",
+  "_target": "master",
+  "_originalSource": "https://github.com/frlender/angular-count-to.git"
+}

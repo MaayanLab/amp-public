@@ -2,7 +2,7 @@
 
 /* App Module */
 
-var app = angular.module('docent', ['idxCtrls','ngRoute','ngAnimate'])
+var app = angular.module('docent', ['idxCtrls','ngRoute','ngAnimate','countTo'])
 
 app.config(['$routeProvider',
   function($routeProvider) {
@@ -37,31 +37,31 @@ app.factory('countUtil',function(){
   return util;
 });
 
-app.directive('genericCount',['countUtil',function(util){
-  return {
-    restrict: 'A',
-    link: function (scope, element) {
-      var initCount = util.validateCount(scope.item.count);
-      var countModel = new util.CountModel();
-      var view = new Barista.Views.GenericCountView({
-        el: element,
-        label: scope.item.name,
-        model: countModel,
-        fg_color: scope.$parent.group.color,
-        top_bar_color: 'white',
-        plot_height: 70,
-        duration: 800,
-        png: false,
-        span_class: ""
-      });
-      countModel.set('count',initCount)
-      scope.$watch('item.count',function(newVal){
-        countModel.set('count',util.validateCount(newVal));
-      });
-    }
-  };
-}])
-.directive('packery',['$timeout',function($timeout){
+// app.directive('genericCount',['countUtil',function(util){
+//   return {
+//     restrict: 'A',
+//     link: function (scope, element) {
+//       var initCount = util.validateCount(scope.item.count);
+//       var countModel = new util.CountModel();
+//       var view = new Barista.Views.GenericCountView({
+//         el: element,
+//         label: scope.item.name,
+//         model: countModel,
+//         fg_color: scope.$parent.group.color,
+//         top_bar_color: 'white',
+//         plot_height: 70,
+//         duration: 800,
+//         png: false,
+//         span_class: ""
+//       });
+//       countModel.set('count',initCount)
+//       scope.$watch('item.count',function(newVal){
+//         countModel.set('count',util.validateCount(newVal));
+//       });
+//     }
+//   };
+// }])
+app.directive('packery',['$timeout',function($timeout){
   return {
     restrict: 'A',
     link: function (scope, element, attr) {
