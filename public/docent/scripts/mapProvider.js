@@ -32,7 +32,8 @@ services.factory('mapProvider',[function(){
   			"Oregon Health and Science University, MEP LINCS":{color:"#66cc33"},
   			"University of California, Irvine  NeuroLINCS":{color:"#ffd200"},
   			"Yale University":{color:"#0F4D92"},
-        "MGH Center for Molecular Therapeutics":{color:"#02a8ca"}
+        "MGH Center for Molecular Therapeutics":{color:"#02a8ca"},
+        "default":{color:"black"}
   		}
   	},
     'assays':{

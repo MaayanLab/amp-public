@@ -9,12 +9,13 @@ services.factory('transform',[function(){
 			var group = {};
 			var groupName = inputGroup[nameKey]
 			group.name = groupNameFun(groupName);
-			group.color = map.meta[groupName].color;
+			group.color = groupName in map.meta?
+			map.meta[groupName].color:map.meta['default'].color;
 			group.counts = [];
 			for(var key in inputGroup){
 				if(key!=nameKey){
 					var count = {};
-					count.name = countNameMap[key];
+					count.name = key in countNameMap?countNameMap[key]:keys;
 					count.count = inputGroup[key];
 					group.counts.push(count);
 				}
@@ -38,7 +39,8 @@ services.factory('transform',[function(){
 	for(var assayName in assayMap.meta){
 		if("center" in assayMap.meta[assayName]){
 			var assayCenter = assayMap.meta[assayName].center;
-			assayMap.meta[assayName].color = centerMap.meta[assayCenter].color;
+			assayMap.meta[assayName].color = assayCenter in centerMap.meta?
+			centerMap.meta[assayCenter].color:centerMap.meta['default'].color;
 		}else{
 			assayMap.meta[assayName].color = colorLibrary[colorCursor%colorLibrary.length];
 			colorCursor = colorCursor + 1;
