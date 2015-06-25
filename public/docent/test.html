@@ -1,27 +1,32 @@
 <div>
-<input ng-model="search[nameKey]"></input>
-<a class="btn-modern fp-btn" ng-click="close()">x</a>
-	<div ng-repeat-start="item in filteredItems=(data | orderBy:nameKey | filter:search | filter:pagination.limit)" flexPopoverPostRepeat>
-		<!-- $event.stopPropagation(); makes text selectable in a draggable container -->
-		<span class="selectable" ng-mousedown="$event.stopPropagation();">{{item[nameKey]}}</span>
-		<a class="btn-modern fp-btn fp-btn-float" ng-click="show=!show">
-			<span ng-if="!show">+</span>
-			<span ng-if="show">-</span>
-		</a>
-	</div>
-	<div ng-if="show">
-		<table>
-			<tbody>
-				<tr ng-repeat="(key,val) in validateKey(item)">
-					<td><span class="selectable" ng-mousedown="$event.stopPropagation();"> {{key}}</span></td>
+<div class="fp-group-header" ng-style="{'border-color':targetGroup.color}">
+	<span >{{targetGroup.name}} > {{targetItem.name}}</span>
+	 <a class="btn-modern fp-btn fp-btn-right" ng-click="close()">x</a>
+</div>
+<div class="fp-align-center">
+	<input class="fp-input" ng-model="search[nameKey]"></input>
+</div>
+<div ng-repeat-start="item in filteredItems=(data | orderBy:nameKey | filter:search | filter:pagination.limit)" flex-popover-post-repeat>
+	<!-- $event.stopPropagation(); makes text selectable in a draggable container -->
+	<span class="selectable" ng-style="{'font-weight':item.show?'bold':''}" ng-mousedown="$event.stopPropagation();">{{item[nameKey]}}</span>
+	<a class="btn-modern fp-btn fp-btn-right" ng-click="item.show=!item.show">
+		<span ng-if="!item.show">+</span>
+		<span ng-if="item.show">-</span>
+	</a>
+</div>
+<div ng-if="item.show">
+	<table class="fp-item-table">
+		<tbody>
+			<tr ng-repeat="(key,val) in validateKey(item)">
+					<td><span class="selectable" ng-mousedown="$event.stopPropagation();">{{key}}</span></td>
 					<td><span class="selectable" ng-mousedown="$event.stopPropagation();">{{val}}</span></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<dvi ng-repeat-end=""></div>
-	</tbody>
-</table>
-<a class="btn-modern fp-btn disabled" ng-class="pagination.limitLower>0?'':'disabled'" ng-if="pagination.matchedSize>pagination.perPageCount&&filteredItems.length" ng-click="pagination.previous()"><</a>
-<a  ng-class="pagination.limitUpper>=pagination.matchedSize?'disabled':''" ng-if="pagination.matchedSize>pagination.perPageCount&&filteredItems.length" class="btn-modern fp-btn" ng-click="pagination.next()">></a>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div ng-repeat-end=""></div>
+<div class="fp-align-center" ng-if="pagination.matchedSize>pagination.perPageCount&&filteredItems.length">
+<a class="btn-modern fp-btn disabled" ng-class="pagination.limitLower>0?'':'disabled'" ng-click="pagination.previous()"><</a> <span class="fp-pagination-span">{{pagination.limitLower}} to {{pagination.limitUpper>pagination.matchedSize?pagination.matchedSize:pagination.limitUpper}} of {{pagination.matchedSize}}</span>
+<a  ng-class="pagination.limitUpper>=pagination.matchedSize?'disabled':''"  class="btn-modern fp-btn" ng-click="pagination.next()">></a>
+</div>
 </div>

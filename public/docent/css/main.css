@@ -193,8 +193,13 @@ font-family: openSansLight;
 .fp-view{
   background-color: white;
   z-index: 998;
-  /*prevent auto-wrapping!*/
-  white-space: nowrap; 
+  white-space: nowrap;
+  /* text-align: center; */
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  padding: 5px;
+  padding-top: 11px;
+  border-top-style: dotted;
+  border-top-width: thin;
 }
 
 a.fp-btn{
@@ -205,11 +210,42 @@ a.fp-btn{
   padding-bottom: 3px;
 }
 
-a.fp-btn-float{
+a.fp-btn-right{
   float:right;
 }
 
 span.selectable{
   padding-left: 3px;
   padding-right: 3px;
+}
+
+.fp-group-header{
+  border-style: solid;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-top-width: 5px;
+  font-size: 0.8em;
+  /* font-weight: bold; */
+  font-family: openSansSemiBold;
+  padding-top: 2px;
+}
+
+.fp-input{
+  width:98%;
+  margin-top: 2px;
+}
+
+.fp-align-center{
+  text-align: center;
+}
+.fp-pagination-span{
+  font-size:0.8em;
+}
+
+.fp-item-table{
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  font-size: 0.9em;
+  width:100%;
 }

@@ -18,16 +18,21 @@ angular.module('idxCtrls', ["services"])
 					return pattern.test(key);
 				});
 				scope.pagination = new Pagination(10);
+				scope.targetGroup =  group;
+				scope.targetItem = item;
 				scope.validateKey = function(item){
 					//Angular filters can only be applied to arrays, not objects.
 					var res = {};
 					for(var key in item){
-						if(item[key]&&key!=scope.nameKey){
+						if(item[key]&&key!=scope.nameKey&&key!='show'){
 							res[key] = item[key];
 						}
 					}
 					return res;
 				}
+				scope.data.forEach(function(e){
+					e.show = false;
+				});
 			}
 		};
 		var template = "http://life.ccs.miami.edu/life/api/constituentinfo?searchTerm={{groupAPIName}}&constituentType={{itemAPIName}}&limit=100";
