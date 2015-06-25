@@ -2,20 +2,20 @@ services.factory('mapProvider',[function(){
   // countName is generic for both center view and assay view
   return {
   	'countName':{
-		antibodyCount: "Antibodies",
-		celllineCount: "Cell Lines",
-		differentiatedcellCount: "Differentiated Cell Lines",
-		geneCount: "Genes",
-		ipscCount: "iPSCs",
-		kinaseCount: "Kinases",
-		phosphoproteinCount: "Phosphoprotein ",
-		primarycellCount: "Primary Cell Lines",
-		proteinCount: "Proteins",
-		rnaiCount: "RNAis",
-		smallmoleculeCount: "Small Molecules",
-		assayCount: "Assays",
-		cdnaCount: "cDNAs",
-		shrnaCount: "shRNAs"
+		antibodyCount: {name:"Antibodies",apiName:""},
+		celllineCount: {name:"Cell Lines",apiName:"CellLine"},
+		differentiatedcellCount: {name:"Differentiated Cell Lines",apiName:""},
+		geneCount: {name:"Genes",apiName:""},
+		ipscCount: {name:"iPSCs",apiName:""},
+		kinaseCount: {name:"Kinases",apiName:""},
+		phosphoproteinCount: {name:"Phosphoprotein ",apiName:""},
+		primarycellCount: {name:"Primary Cell Lines",apiName:""},
+		proteinCount: {name:"Proteins",apiName:""},
+		rnaiCount: {name:"RNAis", apiName:""},
+		smallmoleculeCount: {name:"Small Molecules", apiName:"SmallMolecule"},
+		assayCount: {name:"Assays", apiName:""},
+		cdnaCount: {name:"cDNAs", apiName:""},
+		shrnaCount: {name:"shRNAs",apiName:""}
   	},
   	'centers':{
   		'nameKey':'centerName',

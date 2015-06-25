@@ -1,6 +1,6 @@
 angular.module('idxCtrls', ["services"])
-.controller('main',['$scope','$location',
-	function($scope,$location){
+.controller('main',['$scope','$location', '$http', 'Pagination',
+	function($scope,$location,$http,Pagination){
 	// in case user refreshes page at assay route.
 	if($location.path()=="/assayView")
 		$scope.view = "assay";
@@ -8,6 +8,42 @@ angular.module('idxCtrls', ["services"])
 		$scope.view = "center";
 	$scope.setView = function(view){
 		$scope.view = view;
+	}
+	$scope.getDetailFactory = function(group,item){
+		var initialize = function(scope){
+			if(scope.data[0]){
+				var keys = Object.keys(scope.data[0]);
+				var pattern = /name/i;
+				scope.nameKey = _.find(keys,function(key){
+					return pattern.test(key);
+				});
+				scope.pagination = new Pagination(10);
+				scope.validateKey = function(item){
+					//Angular filters can only be applied to arrays, not objects.
+					var res = {};
+					for(var key in item){
+						if(item[key]&&key!=scope.nameKey){
+							res[key] = item[key];
+						}
+					}
+					return res;
+				}
+			}
+		};
+		var template = "http://life.ccs.miami.edu/life/api/constituentinfo?searchTerm={{groupAPIName}}&constituentType={{itemAPIName}}&limit=100";
+		if(item.data)
+			return {data:item.data,initialize:initialize};
+		else{
+			return function(cb){
+				$http.get(S(template).template({groupAPIName:group.apiName,
+					itemAPIName:item.apiName}).s)
+				.success(function(data){
+					item.data = data.results;
+					cb({data:data.results,
+						initialize:initialize});
+				});
+			}
+		}
 	}
 }])
 .controller('centerView',['$scope','initialize',function($scope,initialize) {

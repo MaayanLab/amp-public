@@ -1,0 +1,30 @@
+{
+  "name": "name",
+  "description": "",
+  "version": "0.0.1",
+  "homepage": "",
+  "license": "",
+  "dependencies": {
+    "angular": "1.3.x",
+    "bootstrap": "3.1.1",
+    "angular-route": "1.3.x",
+    "angular-animate": "1.3.x",
+    "underscore": "1.7.0",
+    "backbone": "latest",
+    "font-awesome": "4.2.0",
+    "string": "2.2.0",
+    "jquery": "latest",
+    "angular-smart-table": "1.4.5",
+    "angular-bootstrap-toggle-switch": "0.5.x",
+    "packery": "latest",
+    "normalize-css": "3.0.2",
+    "datatables": "1.10.x",
+    "angular-datatables":"latest",
+    "angular-count-to": "https://github.com/frlender/angular-count-to.git#master",
+    "angular-flex-popover": "https://github.com/frlender/angular-flex-popover.git#master"
+  },
+  "resolutions": {
+    "bootstrap": "~3.3.0",
+    "outlayer": "1.4.x"
+  }
+}

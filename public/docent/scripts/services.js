@@ -9,13 +9,15 @@ services.factory('transform',[function(){
 			var group = {};
 			var groupName = inputGroup[nameKey]
 			group.name = groupNameFun(groupName);
+			group.apiName = groupName;
 			group.color = groupName in map.meta?
 			map.meta[groupName].color:map.meta['default'].color;
 			group.counts = [];
 			for(var key in inputGroup){
 				if(key!=nameKey){
 					var count = {};
-					count.name = key in countNameMap?countNameMap[key]:keys;
+					count.name = key in countNameMap?countNameMap[key].name:key;
+					count.apiName = key in countNameMap?countNameMap[key].apiName:"";
 					count.count = inputGroup[key];
 					group.counts.push(count);
 				}
@@ -73,10 +75,43 @@ services.factory('transform',[function(){
 			var groups = transform(inputGroups[key],assayMap,
 				mapProvider.countName, capitalize);
 			assayDeferred.resolve(groups);
-			console.log('assayDeferred.resolve');
 		});
 
 		var res = {centers:centerDeferred.promise,
 			assays:assayDeferred.promise};
 		return res;
-}]);
+}])
+.factory('Pagination',function(){
+	// pagination used for popover.
+	return function Pagination(perPageCount){
+		this.perPageCount = perPageCount;
+		this.limitLower = 0;
+	    this.limitUpper = perPageCount;
+		this.matchedSize = 0;
+
+		var self = this;
+		this.previous = function(){
+			if(self.limitLower>0){
+				self.limitLower -= self.perPageCount;
+				self.limitUpper -= self.perPageCount;
+			}
+		}
+
+		this.next = function(){
+			if(self.limitUpper<self.matchedSize){
+				self.limitLower += self.perPageCount;
+				self.limitUpper += self.perPageCount;
+			}
+		}
+
+		this.limit = function(val,idx,arr){
+			if(self.matchedSize!=arr.length){
+				self.limitLower = 0;
+				self.limitUpper = self.perPageCount;
+			}
+			self.matchedSize = arr.length;
+			return idx>=self.limitLower&&idx<self.limitUpper;
+		};
+
+	}
+});

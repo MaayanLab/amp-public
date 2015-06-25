@@ -64,10 +64,19 @@ font-family: openSansLight;
  }
 
 
- a:hover, a:focus{
+ a.btn-modern:hover, a.btn-modern:focus{
   text-decoration: none !important;
   color:white !important;
   background-color: rgba(0,0,0,0.7);
+  border-color:white;
+ }
+
+ a.disabled{
+  color:#bbb !important;
+ }
+ a.disabled:hover, a.disabled:hover{
+  color:#bbb !important;
+  background-color: rgba(255,255,255,0.9);
   border-color:white;
  }
 
@@ -179,4 +188,28 @@ font-family: openSansLight;
 .number:hover{
  /*border-bottom: solid;
  border-width: 1px;*/
+}
+
+.fp-view{
+  background-color: white;
+  z-index: 998;
+  /*prevent auto-wrapping!*/
+  white-space: nowrap; 
+}
+
+a.fp-btn{
+  border:none;
+  padding-top:3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 3px;
+}
+
+a.fp-btn-float{
+  float:right;
+}
+
+span.selectable{
+  padding-left: 3px;
+  padding-right: 3px;
 }

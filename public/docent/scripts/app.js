@@ -2,7 +2,7 @@
 
 /* App Module */
 
-var app = angular.module('docent', ['idxCtrls','ngRoute','ngAnimate','countTo'])
+var app = angular.module('docent', ['idxCtrls','ngRoute','ngAnimate','countTo','flexPopover'])
 
 app.config(['$routeProvider',
   function($routeProvider) {
