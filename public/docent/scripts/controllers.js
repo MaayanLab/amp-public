@@ -13,9 +13,11 @@ angular.module('idxCtrls', ["services"])
 		var initialize = function(scope){
 			if(scope.data[0]){
 				var keys = Object.keys(scope.data[0]);
-				var pattern = /name/i;
+				var hasName = /name/i;
+				var hasAlter = /alter/i;
+				var hasProvider = /provider/i;
 				scope.nameKey = _.find(keys,function(key){
-					return pattern.test(key);
+					return hasName.test(key) && !hasAlter.test(key) && !hasProvider.test(key);
 				});
 				scope.pagination = new Pagination(10);
 				scope.targetGroup =  group;
@@ -30,12 +32,15 @@ angular.module('idxCtrls', ["services"])
 					}
 					return res;
 				}
+				scope.formatVal = function(val){
+					return val.constructor == Array ? val.join(', '):val;
+				}
 				scope.data.forEach(function(e){
 					e.show = false;
 				});
 			}
 		};
-		var template = "http://life.ccs.miami.edu/life/api/constituentinfo?searchTerm={{groupAPIName}}&constituentType={{itemAPIName}}&limit=100";
+		var template = "http://life.ccs.miami.edu/life/api/drilldown?searchTerm={{groupAPIName}}&constituentType={{itemAPIName}}&limit=100";
 		if(item.data)
 			return {data:item.data,initialize:initialize};
 		else{
@@ -43,8 +48,11 @@ angular.module('idxCtrls', ["services"])
 				$http.get(S(template).template({groupAPIName:group.apiName,
 					itemAPIName:item.apiName}).s)
 				.success(function(data){
-					item.data = data.results;
-					cb({data:data.results,
+					var tData; // transformed data;
+					for(var key in data){
+						tData = data[key];
+					}
+					cb({data:tData,
 						initialize:initialize});
 				});
 			}

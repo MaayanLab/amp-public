@@ -1,12 +1,14 @@
 <div>
 <div class="fp-group-header" ng-style="{'border-color':targetGroup.color}">
-	<span >{{targetGroup.name}} > {{targetItem.name}}</span>
+	<span>{{targetGroup.name}} > {{targetItem.name}}</span>
 	 <a class="btn-modern fp-btn fp-btn-right" ng-click="close()">x</a>
 </div>
-<div class="fp-align-center">
-	<input class="fp-input" ng-model="search[nameKey]"></input>
+<hr style="margin-top:4px" ng-if="data.length<=10">
+<div ng-if="data.length>10" class="fp-align-center">
+	<!-- ng-if creates its own child scope. So use $parent.search here. -->
+	<input class="fp-input" ng-model="$parent.search[nameKey]"></input>
 </div>
-<div ng-repeat-start="item in filteredItems=(data | orderBy:nameKey | filter:search | filter:pagination.limit)" flex-popover-post-repeat>
+<div class="fp-entry" ng-repeat-start="item in filteredItems=(data | orderBy:nameKey | filter:search | filter:pagination.limit)" flex-popover-post-repeat>
 	<!-- $event.stopPropagation(); makes text selectable in a draggable container -->
 	<span class="selectable" ng-style="{'font-weight':item.show?'bold':''}" ng-mousedown="$event.stopPropagation();">{{item[nameKey]}}</span>
 	<a class="btn-modern fp-btn fp-btn-right" ng-click="item.show=!item.show">
@@ -19,7 +21,15 @@
 		<tbody>
 			<tr ng-repeat="(key,val) in validateKey(item)">
 					<td><span class="selectable" ng-mousedown="$event.stopPropagation();">{{key}}</span></td>
-					<td><span class="selectable" ng-mousedown="$event.stopPropagation();">{{val}}</span></td>
+					<td>
+						<a ng-if="expand"><span ng-click="$parent.expand=false"><</span></a>
+						<span ng-if="formatVal(val).length<=50 || expand" class="selectable" ng-mousedown="$event.stopPropagation();">{{formatVal(val)}}</span>
+						<span ng-if="formatVal(val).length>50&&!expand" class="selectable" ng-mousedown="$event.stopPropagation();">{{formatVal(val).slice(0,50)}}</span>
+						<a ng-if="formatVal(val).length>50" ng-click="$parent.expand=!$parent.expand">
+							<span ng-if="!$parent.expand">...</span>
+							<span ng-if="$parent.expand"><</span>
+						</a>
+					</td>
 			</tr>
 		</tbody>
 	</table>

@@ -200,6 +200,8 @@ font-family: openSansLight;
   padding-top: 11px;
   border-top-style: dotted;
   border-top-width: thin;
+  font-family: openSansLight;
+  text-align: left;
 }
 
 a.fp-btn{
@@ -212,6 +214,7 @@ a.fp-btn{
 
 a.fp-btn-right{
   float:right;
+  font-size:0.8em;
 }
 
 span.selectable{
@@ -231,13 +234,26 @@ span.selectable{
   padding-top: 2px;
 }
 
+.fp-group-header>span{
+  cursor: default;
+}
+.fp-group-header>a{
+  font-size: 0.9em;
+}
+
+.fp-entry{
+  text-align: left;
+}
+
 .fp-input{
-  width:98%;
+  width:100%;
   margin-top: 2px;
+  /*margin-right:2px;*/
 }
 
 .fp-align-center{
   text-align: center;
+  padding-right: 5px;
 }
 .fp-pagination-span{
   font-size:0.8em;
@@ -248,4 +264,14 @@ span.selectable{
   border-bottom-width: thin;
   font-size: 0.9em;
   width:100%;
+  text-align: left;
 }
+
+.fp-item-table a{
+  cursor:pointer;
+}
+
+.fp-item-table a:hover{
+  color:lightblue;
+}
+
