@@ -17,12 +17,9 @@ angular.module('idxCtrls', ["services"])
 			var hasAlter = /alter/i;
 			var hasProvider = /provider/i;
 			var hasCenter = /center/i;
-			if(item.apiName=="SmallMolecule")
-				scope.nameKey = 'SM_LINCS_ID'
-			else
-				scope.nameKey = _.find(keys,function(key){
-					return hasName.test(key) && !hasAlter.test(key) && !hasProvider.test(key) && !hasCenter.test(key);
-				});
+			scope.nameKey = _.find(keys,function(key){
+				return hasName.test(key) && !hasAlter.test(key) && !hasProvider.test(key) && !hasCenter.test(key);
+			});
 			scope.pagination = new Pagination(10);
 			scope.targetGroup =  group;
 			scope.targetItem = item;
