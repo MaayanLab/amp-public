@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json({limit:'5mb'});
 var urlencodedParser = bodyParser.urlencoded({limit:'5mb',extended:false});
 
-app.use('/',express.static(__dirname + '/public'));
+app.use('/docent',express.static(__dirname + '/public/docent'));
 
 
 var port = 6061;
