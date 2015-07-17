@@ -1,0 +1,40 @@
+<div>
+<div class="fp-group-header" ng-style="{'border-color':targetGroup.color}">
+	<span>{{targetGroup.name}} > {{targetItem.name}}</span>
+	 <a class="btn-modern fp-btn fp-btn-right" ng-click="close()">x</a>
+</div>
+<div class="fp-align-center">
+	<input class="fp-input" ng-model="search[nameKey]" ng-model-options="{debounce:500}"></input>
+</div>
+<div class="fp-entry" ng-repeat-start="item in data" flex-popover-post-repeat>
+	<!-- $event.stopPropagation(); makes text selectable in a draggable container -->
+	<span class="selectable" ng-style="{'font-weight':item.show?'bold':''}" ng-mousedown="$event.stopPropagation();">{{item[nameKey]}}</span>
+	<a class="btn-modern fp-btn fp-btn-right" ng-click="item.show=!item.show">
+		<span ng-if="!item.show">+</span>
+		<span ng-if="item.show">-</span>
+	</a>
+</div>
+<div ng-if="item.show">
+	<table class="fp-item-table">
+		<tbody>
+			<tr ng-repeat="(key,val) in validateKey(item)">
+					<td><span class="selectable" ng-mousedown="$event.stopPropagation();">{{key}}</span></td>
+					<td>
+						<a ng-if="expand"><span ng-click="$parent.expand=false"><</span></a>
+						<span ng-if="formatVal(val).length<=50 || expand" class="selectable" ng-mousedown="$event.stopPropagation();">{{formatVal(val)}}</span>
+						<span ng-if="formatVal(val).length>50&&!expand" class="selectable" ng-mousedown="$event.stopPropagation();">{{formatVal(val).slice(0,50)}}</span>
+						<a ng-if="formatVal(val).length>50" ng-click="$parent.expand=!$parent.expand">
+							<span ng-if="!$parent.expand">...</span>
+							<span ng-if="$parent.expand"><</span>
+						</a>
+					</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div ng-repeat-end=""></div>
+<div ng-if="!search[nameKey]" class="fp-align-center">
+<a class="btn-modern fp-btn disabled" ng-class="skip>0?'':'disabled'" ng-click="previous()"><</a> <span class="fp-pagination-span">{{skip}} to {{skip+limit}} of {{max}}</span>
+<a  ng-class="skip+limit>=max?'disabled':''"  class="btn-modern fp-btn" ng-click="next()">></a>
+</div>
+</div>
