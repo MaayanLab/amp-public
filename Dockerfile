@@ -1,13 +1,11 @@
 FROM node:0.10.31
 
-RUN apt-get update && apt-get install -y npm git
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-WORKDIR /home
+COPY . /usr/src/app
+RUN npm install -g bower && npm install && bower install --allow-root
 
 EXPOSE 6061
 
-CMD git clone -b product https://github.com/MaayanLab/amp-public.git \
-	&& cd amp-public \
-	&& npm install \
-	&& bower -F install --allow-root \
-	&& node index.js
+CMD [ "node", "index.js" ]
