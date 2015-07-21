@@ -180,4 +180,23 @@ angular.module('idxCtrls', ["services"])
 		$scope.groups = groups;
 		$scope.containerId = 'assayContainer';
 	});
-}]);
+}])
+.filter('noPhase1',function(){
+	return function(input){
+		console.log(input);
+		return input
+		// if(input){
+		// if('centerName' in input){
+		// 	if(input.centerName=='Arizona State Universtity, Cellarium' ||
+		// 		input.centerName == 'Columbia University Health Sciences' ||
+		// 		input.centerName == 'MGH Center for Molecular Therapeutics' ||
+		// 		input.centerName == 'Yale University')
+		// 		return false;
+		// 	else 
+		// 		return true;
+		// }else{
+		// 	return true;
+		// }
+		// }
+	}
+});
