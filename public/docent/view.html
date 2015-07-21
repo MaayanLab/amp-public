@@ -1,4 +1,4 @@
 
 <div id="{{containerId}}" class="container">
-  <div ng-repeat="group in groups" ng-include="'count.html'" packery="packery" class="group"></div>
+  <div ng-repeat="group in groups | filter:'!Arizona' | filter:'!Columbia' | filter:'!MGH' |filter: '!Yale'" ng-include="'count.html'" packery="packery" class="group"></div>
 </div>
