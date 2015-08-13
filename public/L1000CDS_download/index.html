@@ -34,6 +34,7 @@ myApp.controller('mainCtrl', ['$scope', function($scope) {
                 <li><a href='#share'>Share</a></li>
             </ul> -->
             <!-- <li><a href='#api'>API</a></li> -->
+            <li><a href="#schema">Schema</a></li>
             <li><a href='#contact'>Contact</a></li>
         </ul>
     </div>
@@ -46,15 +47,17 @@ myApp.controller('mainCtrl', ['$scope', function($scope) {
         <section id='summary'>
             <h3>Installation</h3>
             <p>1. Install <a href="http://www.mongodb.org/">MongoDB</a>.</p>
-            <p>2. Download all the LINCS_L1000_CD.x files and place them into the MongoDB database folder.</p>
-            <p>3. Start mongod.</p>
-            <p>4. Open a mongo shell and switch to LINCS_L1000_CD db. The cpc2014 collection in the db stores all the processed LINCS L1000 data. </p>
-            <p>5. Optionally it is suggested to download and install <a href="http://robomongo.org/">Robomongo</a> which provides a nice GUI to browse the data.</p>
+            <p>2. Download the LINCS_L1000_CD.tar.gz file and unzip.</p>
+            <p>3. Place all the LINCS_L1000_CD.x files in the unzipped folder into the MongoDB database folder.</p>
+            <p>4. Start mongod.</p>
+            <p>5. Open a mongo shell and switch to LINCS_L1000_CD db. The LINCScloud collection in the db stores all the processed LINCS L1000 data download from LINCS cloud. The GSE70138 collection contains all the processed LINCS L1000 data downlaoded from GEO. The two collections do not overlap. </p>
+            <p>6. Optionally it is suggested to download and install <a href="http://robomongo.org/">Robomongo</a> which provides a nice GUI to browse the data.</p>
             <p>6. Refer to the MongoDB documentation for query specifications and drivers for different languages.</p>
        </section>
         <section id='genesMeta'>
             <h3>Genes' Meta-data</h3>
-            <p><a href="rid.json">rid.json</a> is an array of probe IDs mapping to the order of the genes in the processed data.</p>
+            <p><a href="LINCSCloudRid.json">LINCSCloudRid.json</a> is an array of probe IDs matching the order of the genes in chdirFull in LINCScloud collection. The order of landmark genes in chdirLm matches that of landmark genes in LINCSCloudRid.json.</p>
+            <p><a href="GSE70138Rid.json">GSE70138Rid.json</a> is an array of probe IDs matching the order of the genes in chdirFull in GSE70138 collection. The order of landmark genes in chdirLm matches that of landmark genes in GSE70138Rid.json.</p>
             <p><a href="apiRowMeta.json">apiRowMeta.json</a> is the meta-data information for each probe ID downloaded from the Broad API and can be used to convert probe IDs to gene symbols and determine if a probe ID is a landmark gene.</p>
 
        </section>
@@ -62,8 +65,109 @@ myApp.controller('mainCtrl', ['$scope', function($scope) {
             <h3>Signatures</h3>
             LINCS_L1000_CD.x MongoDB files are listed here:
             <div>
-              <a href="http://amp.pharm.mssm.edu/lincs-playground/index.php/s/hAkw7Y5zMpxijdW">http://amp.pharm.mssm.edu/lincs-playground/index.php/s/hAkw7Y5zMpxijdW</a>
+              <a href="http://amp.pharm.mssm.edu/l1kdownload">http://amp.pharm.mssm.edu/l1kdownload</a>
             </div>
+       </section>
+       <section id='schema'>
+            <h3>Schema</h3>
+            <table>
+            <caption>Fields</caption>
+                <tr>
+                    <td>batch</td>
+                    <td>String</td>
+                    <td>A batch is a group of experiments measured on the same plates.</td>
+                </tr>
+                <tr>
+                    <td>cell_id</td>
+                    <td>String</td>
+                    <td>Cell-line name</td>
+                </tr>
+                <tr>
+                    <td>chdirFull</td>
+                    <td>Array</td>
+                    <td>The full characteristic direction consisting of values of 22,268 genes.</td>
+                </tr>
+                <tr>
+                    <td>chdirLm</td>
+                    <td>Array</td>
+                    <td>The landmark characteristic direction consisting of values of 978 landmark genes. </td>
+                </tr>
+                <tr>
+                    <td>chdirMeanDistLm</td>
+                    <td>Number</td>
+                    <td>Average cosine distance calculated the using landmark genes which is the test statistic to assess the significance of a signature and has a range of [0,2].</td>
+                </tr>
+                <tr>
+                    <td>dnGenes</td>
+                    <td>Array</td>
+                    <td>An array of significantly down-regulated genes in Entrez gene symbols.</td>
+                </tr>
+                <tr>
+                    <td>pert_desc</td>
+                    <td>String</td>
+                    <td> The name of the chemical perturbation.</td>
+                </tr>
+                <tr>
+                    <td>pert_dose</td>
+                    <td>Number,String</td>
+                    <td>The dose of the perturbation. It is a number in GSE70138 collection and a string in LINCScloud collection.</td>
+                </tr>
+                <tr>
+                    <td>pert_dose_unit</td>
+                    <td>String</td>
+                    <td>The unit of the perturbation dose.</td>
+                </tr>
+                <tr>
+                    <td>pert_id</td>
+                    <td>String</td>
+                    <td>The Broad ID of an perturbation.</td>
+                </tr>
+                <tr>
+                    <td>pert_time</td>
+                    <td>Number, String</td>
+                    <td>How long the perturbation has been applied.It is a number in GSE70138 collection and a string in LINCScloud collection.</td>
+                </tr>
+                <tr>
+                    <td>pert_time_unit</td>
+                    <td>String</td>
+                    <td>The unit of pert_time.</td>
+                </tr>
+                <tr>
+                    <td>pert_type</td>
+                    <td>String</td>
+                    <td>The type of the perturbation.</td>
+                </tr>
+                <tr>
+                    <td>pvalue</td>
+                    <td>Number</td>
+                    <td>The significance of a signature.</td>
+                </tr>
+                <tr>
+                    <td>replicateCount</td>
+                    <td>Number</td>
+                    <td> The number of replicates from which the signature is calculated</td>
+                </tr>
+                <tr>
+                    <td>sigIdx</td>
+                    <td>Array</td>
+                    <td>The index of the significant up genes and down genes in chdirFull. Notice that the index is <strong>one based!</strong></td>
+                </tr>
+                <tr>
+                    <td>sig_id</td>
+                    <td>String</td>
+                    <td>The unqiue identifier of a signature.</td>
+                </tr>
+                <tr>
+                    <td>upGenes</td>
+                    <td>Array</td>
+                    <td> An arry of significantly up-regulated genes in Entrez gene symbols.</td>
+                </tr>
+<!--                 <tr>
+                    <td>geo_id</td>
+                    <td>String</td>
+                    <td> The GEO id of the signature. GSE70138 collection only.</td>
+                </tr> -->
+            </table>
        </section>
        <section id="contact">
             <h3>Contact</h3>
