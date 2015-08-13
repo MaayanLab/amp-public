@@ -1,14 +1,15 @@
-FROM node:0.10.31
+FROM library/node:0.10
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN apt-get update && apt-get install -y npm git
 
-COPY . /usr/src/app
-RUN npm install -g bower && npm install && bower install --allow-root
-WORKDIR /usr/src/app/public/docent
-RUN bower install --allow-root
-WORKDIR /usr/src/app
+WORKDIR /home
 
 EXPOSE 6061
 
-CMD [ "node", "index.js" ]
+CMD git clone -b product https://github.com/MaayanLab/amp-public.git \
+	&& cd sigine \
+	&& npm install \
+	&& npm install -g bower \
+	&& npm install -g grunt-cli \
+	&& bower -F install --allow-root \
+	&& node index.js
