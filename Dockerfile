@@ -7,7 +7,7 @@ WORKDIR /home
 EXPOSE 6061
 
 CMD git clone -b product https://github.com/MaayanLab/amp-public.git \
-	&& cd sigine \
+	&& cd amp-public \
 	&& npm install \
 	&& npm install -g bower \
 	&& npm install -g grunt-cli \
