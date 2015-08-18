@@ -12,4 +12,7 @@ CMD git clone -b product https://github.com/MaayanLab/amp-public.git \
 	&& npm install -g bower \
 	&& npm install -g grunt-cli \
 	&& bower -F install --allow-root \
+	&& cd public/docent \
+	&& bower -F install --allow-root \
+	&& cd ../.. \
 	&& node index.js
