@@ -55,7 +55,7 @@ angular.module('idxCtrls', ["services"])
 					for(var key in data){
 						tData = data[key];
 					}
-					item.data = tData;
+					// item.data = tData;
 					cb({data:tData,
 						initialize:initialize});
 				});
