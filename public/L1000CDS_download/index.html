@@ -46,7 +46,7 @@ myApp.controller('mainCtrl', ['$scope', function($scope) {
         <section id='summary'>
             <h3>Installation</h3>
             <p>1. Install <a href="http://www.mongodb.org/">MongoDB</a>.</p>
-            <p>2. Download all the LINCS_L1000_CD.x files and place them into the MongoDB database folder.</p>
+            <p>2. Download the two files listed under "Signatures" and place them into the MongoDB database folder.</p>
             <p>3. Start mongod.</p>
             <p>4. Open a mongo shell and switch to LINCS_L1000_CD db. The cpc2014 collection in the db stores all the processed LINCS L1000 data. </p>
             <p>5. Optionally it is suggested to download and install <a href="http://robomongo.org/">Robomongo</a> which provides a nice GUI to browse the data.</p>
@@ -60,10 +60,15 @@ myApp.controller('mainCtrl', ['$scope', function($scope) {
        </section>
        <section id='sig'>
             <h3>Signatures</h3>
-            LINCS_L1000_CD.x MongoDB files are listed here:
-            <div>
-              <a href="http://amp.pharm.mssm.edu/lincs-playground/index.php/s/hAkw7Y5zMpxijdW">http://amp.pharm.mssm.edu/lincs-playground/index.php/s/hAkw7Y5zMpxijdW</a>
-            </div>
+            <p>MongoDB files are listed here:</p>
+            <ul class='list-unstyled'>
+              <li>
+                <a href="http://amp.pharm.mssm.edu/static/hdfs/l1000cds2/cpcd-gse70138.metadata.json">cpcd-gse70138.metadata.json</a>
+              </li>
+              <li>
+                <a href="http://amp.pharm.mssm.edu/static/hdfs/l1000cds2/cpcd-gse70138.bson">cpcd-gse70138.bson (WARNING: This is 37.53 GB!)</a>
+              </li>
+            </ul>
        </section>
        <section id="contact">
             <h3>Contact</h3>
